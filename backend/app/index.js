@@ -1,19 +1,19 @@
 const express = require('express');
-const GenerationEngine = require('./engine');
+const GenerationEngine = require('./generation/engine');
+const dragonRouter = require('./api/dragon');
+const generationRouter = require('./api/generation');
 
 const app = express();
 const engine = new GenerationEngine();
-const port = 3001;
+
+app.locals.engine = engine;
+
+app.use('/dragon', dragonRouter);
+app.use('/generation', generationRouter);  
 
 engine.start();
 
-app.get('/dragon/new', (req, res) => {
-    res.json({ dragon: engine.generation.newDragon() });
-});
-
-app.listen(port, () => console.log(`listening on port ${port}`));
-
-
+module.exports = app;
 
 /* CODE FROM EARLIER IN COURSE, second time it's removed
 const Generation = require('./generation');
