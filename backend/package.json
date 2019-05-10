@@ -5,11 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./bin/server",
-    "dev": "nodemon ./bin/server"
+    "dev": "nodemon ./bin/server",
+    "configure": "sh.exe c:/react/dragonstack/backend/bin/configure_db.sh",
+    "configure-dev": "npm run configure && npm run dev"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "pg": "^7.10.0"
   }
 }
